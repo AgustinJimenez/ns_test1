@@ -20,7 +20,7 @@
     <ListView [items]="paginas" (itemTap)="onItemTap($event)" class="list-group">
 
         <ng-template let-pagina="item" let-i="index" let-odd="odd" let-even="even">
-            <Button class="btn btn-danger" id="button" [text]="pagina.title" (tap)="onTap($event)"></Button>
+            <Button class="btn btn-primary" id="button" [text]="pagina.title" (tap)="onTap($event)"></Button>
         </ng-template>
 
     </ListView>
