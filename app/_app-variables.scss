@@ -9,9 +9,15 @@ $background-light: #FFFFFF !default;
 
 $blue-dark: #022734 !default;
 $blue-light: #02556E !default;
+$red-dark: rgba(223, 11, 0, 0.911);
+
 $blue-50: rgba($blue-dark, 0.5) !default;
 $blue-20: rgba($blue-dark, 0.2) !default;
 $blue-10: rgba($blue-dark, 0.1) !default;
+
+$red-50: rgba($red-dark, 0.5) !default;
+$red-20: rgba($red-dark, 0.2) !default;
+$red-10: rgba($red-dark, 0.1) !default;
 
 $accent-dark: #3A53FF !default;
 $accent-light: #4781FE !default;
@@ -24,6 +30,7 @@ $warning-light: #F2C112 !default;
 
 $error-dark: #D84039 !default;
 $error-light: #ED473F !default;
+$error-light2: #ff0003 !default;
 
 $midnight-dark: #0F336D !default;
 $midnight-light: #14418B !default;
@@ -42,35 +49,36 @@ $page-content-placeholder-font-size: 20;
 
 // Colors
 $background: #fff;
-$primary: lighten(#000, 13%);
-$secondary: lighten(#000, 46%);
+$primary: $white;
+$secondary: $white;
+$white: $background;
 $disabled: lighten(#000, 62%);
 $accent: $accent-dark;
 $error: $error-light;
 
 // SideDrawer
-$item-color-android : #737373;
-$item-active-background: #F8F8F8;
-$item-active-color: $accent;
-$item-active-icon-color: $item-active-color;
-$item-color-ios: $blue-dark;
-$item-color-android: $blue-dark;
+$item-color-android : $white;
+$item-active-background: $red-dark;
+$item-active-color: $white;
+$item-active-icon-color: $error-light2;
+$item-color-ios: $error-light2;
+$item-color-android: $error-light2;
 
-$side-drawer-header-background: #fafafa;
-$side-drawer-header-brand: #737373;
-$side-drawer-background: #FFFFFF;
+$side-drawer-header-background: $error-light2;
+$side-drawer-header-brand: $white;
+$side-drawer-background: $error-light2;
 
 // ActionBar
-$ab-background: $accent;
+$ab-background: $error-light2;
 $ab-color: $white;
 
 // Buttons
 $btn-color-inverse: $white;
-$btn-color: $accent;
-$btn-color-secondary: darken($btn-color, 10%);
-$btn-color-outline-highlighted: lighten($btn-color, 10%);
+$btn-color: $error-light2;
+$btn-color-secondary: $white;
+$btn-color-outline-highlighted: $white;
 
 //Text colors
-$headings-color: $blue-dark;
-$secondary: $blue-dark;
-$text-color: $blue-dark;
+$headings-color: $white;
+$secondary: $white;
+$text-color: $white;

@@ -51,18 +51,20 @@ export class HttpService
                     if(response.error==undefined)
                       response.error = true;
 
+                    if(response.error)
+                        reject(response);
+
                     resolve(response);
                 },
                 error =>
                 {
-
                     //this.loading.dismiss();
                     //this.toast.showLongBottom("No se puede conectar con el servidor.").subscribe();
 
                     if(this.debug)
                         console.log("NETWORK-ERROR", error);
 
-                    reject( {error: true} );
+                    reject( error );
                 });
 
             }, 0);

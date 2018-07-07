@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import * as app from "application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { HttpService } from "./../services/HttpService";
-import { Routes } from "./../config/Routes";
+import { HttpService } from "./../../services/HttpService";
+import { Routes } from "./../../config/Routes";
+import { EventData } from "data/observable";
+import { Button } from "ui/button";
 
 @Component({
     selector: "Home",
@@ -41,6 +43,13 @@ export class HomeComponent implements OnInit
 
     }
 
+    page_was_tapped(args: EventData)
+    {
+        let button = <Button>args.object;
+
+        alert("Tapped!");
+    
+    }
 
 
 
