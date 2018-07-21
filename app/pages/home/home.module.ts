@@ -1,11 +1,11 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 
-import { HomeRoutingModule } from "./home-routing.module";
-import { HomeComponent } from "./home.component";
+import { HomeRoutingModule } from "~/pages/home/home-routing.module";
+import { HomeComponent } from "~/pages/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
-import { HttpService } from "./../../services/HttpService";
-import { Routes } from "./../../config/Routes";
+import { HttpProvider } from "./../../providers/HttpProvider";
+import { Routes } from "~/config/Routes";
 
 @NgModule({
     imports: 
@@ -24,7 +24,7 @@ import { Routes } from "./../../config/Routes";
     ],
     providers:
     [
-        HttpService,
+        HttpProvider,
         Routes
     ]
 })

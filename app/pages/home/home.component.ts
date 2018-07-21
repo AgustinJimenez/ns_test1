@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import * as app from "application";
+import * as app from "tns-core-modules/application/application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { HttpService } from "./../../services/HttpService";
-import { Routes } from "./../../config/Routes";
-import { EventData } from "data/observable";
-import { Button } from "ui/button";
+import { HttpProvider } from "./../../providers/HttpProvider";
+import { Routes } from "~/config/Routes";
+import { EventData } from "tns-core-modules/data/observable/observable";
+import { Button } from "tns-core-modules/ui/button/button";
+import { RouterExtensions } from "nativescript-angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "Home",
@@ -17,9 +19,16 @@ export class HomeComponent implements OnInit
     public cod_usuario: string ;
     public paginas: Array<Object> = [];
 
-    constructor( public http: HttpService, public routes: Routes ) 
+    constructor
+    ( 
+        public http: HttpProvider, 
+        public routes: Routes, 
+        private routerExtensions: RouterExtensions ,
+        private route: ActivatedRoute
+    ) 
     {
         // Use the component constructor to inject providers.
+        this.route.params.forEach((params) => { console.log("PARAMS===>", params); });
     }
 
     ngOnInit(): void 
@@ -43,12 +52,10 @@ export class HomeComponent implements OnInit
 
     }
 
-    page_was_tapped(args: EventData)
+    page_was_tapped(url)
     {
-        let button = <Button>args.object;
-
-        alert("Tapped!");
-    
+        //let button = <Button>args.object;
+        //this.routerExtensions.navigate(["/web_page"], {});
     }
 
 

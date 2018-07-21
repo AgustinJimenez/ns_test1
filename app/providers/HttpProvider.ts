@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Observable as RxObservable } from "rxjs";
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
-export class HttpService 
+export class HttpProvider
 {
     private debug: boolean = true;
     private default_headers = 
