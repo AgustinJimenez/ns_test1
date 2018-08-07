@@ -1,8 +1,8 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 
-import { HomeRoutingModule } from "~/pages/home/home-routing.module";
-import { HomeComponent } from "~/pages/home/home.component";
+import { IdentificacionRoutingModule } from "~/pages/identificacion/identificacion-routing.module";
+import { IdentificacionComponent } from "~/pages/identificacion/identificacion.component";
 import { HttpClientModule } from "@angular/common/http";
 import { HttpProvider } from "~/providers/HttpProvider";
 import { Routes } from "~/config/Routes";
@@ -11,12 +11,12 @@ import { Routes } from "~/config/Routes";
     imports: 
     [
         NativeScriptCommonModule,
-        HomeRoutingModule,
+        IdentificacionRoutingModule,
         HttpClientModule
     ],
     declarations: 
     [
-        HomeComponent
+        IdentificacionComponent
     ],
     schemas: 
     [
@@ -28,4 +28,4 @@ import { Routes } from "~/config/Routes";
         Routes
     ]
 })
-export class HomeModule { }
+export class IdentificacionModule { }

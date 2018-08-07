@@ -9,15 +9,18 @@ import { filter } from "rxjs/operators";
     selector: "ns-app",
     templateUrl: "app.component.html"
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit 
+{
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+    constructor(private router: Router, private routerExtensions: RouterExtensions) 
+    {
         // Use the component constructor to inject services.
     }
 
-    ngOnInit(): void {
+    ngOnInit(): void 
+    {
         this._activatedUrl = "/home";
         this._sideDrawerTransition = new SlideInOnTopTransition();
 
@@ -26,17 +29,22 @@ export class AppComponent implements OnInit {
         .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
     }
 
-    get sideDrawerTransition(): DrawerTransitionBase {
+    get sideDrawerTransition(): DrawerTransitionBase 
+    {
         return this._sideDrawerTransition;
     }
 
-    isComponentSelected(url: string): boolean {
+    isComponentSelected(url: string): boolean 
+    {
         return this._activatedUrl === url;
     }
 
-    onNavItemTap(navItemRoute: string): void {
-        this.routerExtensions.navigate([navItemRoute], {
-            transition: {
+    onNavItemTap(navItemRoute: string): void 
+    {
+        this.routerExtensions.navigate([navItemRoute], 
+        {
+            transition: 
+            {
                 name: "fade"
             }
         });

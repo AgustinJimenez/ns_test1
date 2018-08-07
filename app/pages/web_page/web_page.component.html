@@ -1,10 +1,12 @@
-<ActionBar class="action-bar">
+<ActionBar class="action-bar" [title]="title">
+
     <!-- 
     Use the NavigationButton as a side-drawer button in Android
     because ActionItems are shown on the right side of the ActionBar
     -->
     <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()">
     </NavigationButton>
+
     <!-- 
     Use the ActionItem for IOS with position set to left. Using the
     NavigationButton as a side-drawer button in iOS is not possible,
@@ -12,8 +14,13 @@
     -->
     <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
     </ActionItem>
-    <Image src="~/resources/images/dls logo.png" stretch="aspectFit" class="m-r-30"></Image>
+    
 </ActionBar>
+
 <GridLayout sdkExampleTitle sdkToggleNavButton>
-    <WebView row="1" #myWebView [src]="webViewSrc"></WebView>
+    <ng-container #WebViewContainer>
+        <WebView row="1" #myWebView [src]="webViewSrc">
+            <Label class="iconRotate" text="{N}" #iconRotate></Label>
+        </WebView>
+    </ng-container>
 </GridLayout>

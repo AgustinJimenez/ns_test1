@@ -7,9 +7,11 @@
 $background-dark: #F8F8F8 !default;
 $background-light: #FFFFFF !default;
 
+$black: black!default;
 $blue-dark: #022734 !default;
 $blue-light: #02556E !default;
 $red-dark: rgba(223, 11, 0, 0.911);
+$red-light: #ff0003 !default;
 
 $blue-50: rgba($blue-dark, 0.5) !default;
 $blue-20: rgba($blue-dark, 0.2) !default;
@@ -30,7 +32,6 @@ $warning-light: #F2C112 !default;
 
 $error-dark: #D84039 !default;
 $error-light: #ED473F !default;
-$error-light2: #ff0003 !default;
 
 $midnight-dark: #0F336D !default;
 $midnight-light: #14418B !default;
@@ -60,25 +61,27 @@ $error: $error-light;
 $item-color-android : $white;
 $item-active-background: $red-dark;
 $item-active-color: $white;
-$item-active-icon-color: $error-light2;
-$item-color-ios: $error-light2;
-$item-color-android: $error-light2;
+$item-active-icon-color: $red-light;
+$item-color-ios: $red-light;
+$item-color-android: $red-light;
 
-$side-drawer-header-background: $error-light2;
+$side-drawer-header-background: $red-light;
 $side-drawer-header-brand: $white;
-$side-drawer-background: $error-light2;
+$side-drawer-background: $red-light;
 
 // ActionBar
-$ab-background: $error-light2;
+$ab-background: $red-light;
 $ab-color: $white;
 
 // Buttons
 $btn-color-inverse: $white;
-$btn-color: $error-light2;
+$btn-color: $red-light;
 $btn-color-secondary: $white;
 $btn-color-outline-highlighted: $white;
 
 //Text colors
 $headings-color: $white;
-$secondary: $white;
-$text-color: $white;
+$secondary: $black;
+$text-color: $black;
+
+$DefaultActivityIndicatorColor: $red-light;

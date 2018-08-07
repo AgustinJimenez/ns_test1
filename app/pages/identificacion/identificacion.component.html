@@ -15,18 +15,13 @@
     <Image src="~/resources/images/dls logo.png" stretch="aspectFit" class="m-r-30"></Image>
 </ActionBar>
 
-<GridLayout>
 
-    <ListView *ngIf="paginas.length>0" [items]="paginas" class="list-group">
-        <ng-template let-pagina="item">
-            <Button class="btn btn-primary btn-active fs-20 font-weight-bold" id="button" [text]="pagina.title" (tap)="page_was_tapped( pagina )" ></Button>
-        </ng-template>
-    </ListView>         
-    
-    <StackLayout *ngIf="show_not_found_text">
-        <Label [text]="text.items_not_found" class="text-center fw-bold fs-20 m-t-20" ></Label>
-    </StackLayout>
+<StackLayout orientation="vertical" class="p-r-20 p-l-20 m-t-10">
 
-    <ActivityIndicator row="1" #activityIndicator [busy]="isBusy" color="red" width="100" height="100" class="activity-indicator"></ActivityIndicator>
+    <Label class="h3 font-weight-bold color-black fs-24" text="Identificacion: " textWrap="true"></Label>
 
-</GridLayout>
+    <TextField hint="Introduzca Identificador" autocorrect="false" class="input input-border"></TextField> 
+
+    <Button [text]="identificador?'ACTUALIZAR':'GUARDAR'" class="btn btn-primary fs-20" (tap)="submit_button_was_tapped()"></Button>
+
+</StackLayout>

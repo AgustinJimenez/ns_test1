@@ -1,10 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import * as connectivity from "connectivity";
 
 @Injectable()
 export class HttpProvider
 {
     private debug: boolean = true;
+    private alert_no_internet_obj = 
+    {
+        title: "AVISO",
+        message: "NO HAY CONEXIÓN",
+        okButtonText: "OK"
+    };
+
     private default_headers = 
     {
         "api-token": "yduibDHAjzwdOVPfvPfmLkprqW1Z3li3",
@@ -19,6 +27,7 @@ export class HttpProvider
 
     public request(url: string, params: any = {}, header: any = {}, method: string = "GET")
     {
+
         let headers = this.create_headers(header);
 
         if(this.debug)
@@ -32,6 +41,11 @@ export class HttpProvider
         {
             setTimeout(() =>
             {
+                if( connectivity.getConnectionType() == connectivity.connectionType.none )
+                {
+                    alert( this.alert_no_internet_obj );
+                    reject( {} );
+                }
 
                 this.http.request(method, url, { body: params, headers: headers }).subscribe( data => 
                 {

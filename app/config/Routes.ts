@@ -8,7 +8,8 @@ export class Routes
     private debug_url: string = "http://gestion.dls.com.py:8080/api/v1/app_gestion_dls/";
     private routes = 
     {
-        "home":""
+        "home": "",
+        "registro": "registro"
     };
 
     public get_route(name: string, params?:string)
