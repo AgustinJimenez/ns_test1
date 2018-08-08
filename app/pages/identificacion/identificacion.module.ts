@@ -6,13 +6,15 @@ import { IdentificacionComponent } from "~/pages/identificacion/identificacion.c
 import { HttpClientModule } from "@angular/common/http";
 import { HttpProvider } from "~/providers/HttpProvider";
 import { Routes } from "~/config/Routes";
+import {NativeScriptFormsModule} from "nativescript-angular/forms"
 
 @NgModule({
     imports: 
     [
         NativeScriptCommonModule,
         IdentificacionRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        NativeScriptFormsModule
     ],
     declarations: 
     [

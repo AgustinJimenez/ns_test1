@@ -3,21 +3,24 @@ import * as app from "tns-core-modules/application/application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { HttpProvider } from "~/providers/HttpProvider";
 import { Routes } from "~/config/Routes";
-
 @Component({
     selector: "Identificacion",
     moduleId: module.id,
     templateUrl: "./identificacion.component.html"
 })
+
 export class IdentificacionComponent implements OnInit 
 {
     public debug:boolean = true;
-    public cod_usuario: string;
-    public params: { "cod_usuario": string };
     public text = 
     {
         items_not_found: "No se encontraron datos."
     };
+    public data:{ cod_usuario: string } = 
+    {
+        "cod_usuario":""
+    };
+
     public options = 
     {
         title: "Race selection",
@@ -48,19 +51,26 @@ export class IdentificacionComponent implements OnInit
         //this.request_pages();
     }
 
-    request_pages()
-    {
-
-
-    }
-
     submit_button_was_tapped()
     {
-        if(!this.cod_usuario)
-        {
+        console.log( "COD_USUARIO="+this.data.cod_usuario );
+
+        if( !this.data.cod_usuario )
             this.show_cod_usuario_empty_message();
-        }
-        console.log( "HOLA" );
+        else
+            this.http.request( this.routes.get_route("registro"), {"cod_usuario": this.data.cod_usuario }, {}, "POST" ).then(response => 
+            {
+                console.log(response);
+            })
+            .catch(error => 
+            {
+                if( error.messages )
+                    alert( error.messages );
+    
+                console.log(error);
+            });
+        
+        
     }
 
     private show_cod_usuario_empty_message()

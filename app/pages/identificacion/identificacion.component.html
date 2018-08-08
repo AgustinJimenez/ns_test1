@@ -20,8 +20,8 @@
 
     <Label class="h3 font-weight-bold color-black fs-24" text="Identificacion: " textWrap="true"></Label>
 
-    <TextField hint="Introduzca Identificador" autocorrect="false" class="input input-border"></TextField> 
+    <TextField hint="Introduzca Identificador" autocorrect="false" class="input input-border" [ngModel]='data.cod_usuario' (ngModelChange)='data.cod_usuario= $event.toUpperCase() '></TextField> 
 
-    <Button [text]="identificador?'ACTUALIZAR':'GUARDAR'" class="btn btn-primary fs-20" (tap)="submit_button_was_tapped()"></Button>
+    <Button [text]="identificador?'ACTUALIZAR':'GUARDAR'" class="btn btn-primary fs-20 font-weight-bold" (tap)="submit_button_was_tapped()"></Button>
 
 </StackLayout>
