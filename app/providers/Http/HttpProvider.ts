@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import * as connectivity from "connectivity";
+import * as connectivity from "tns-core-modules/connectivity/connectivity";
+
 @Injectable()
 export class HttpProvider
 {

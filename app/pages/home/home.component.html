@@ -15,18 +15,25 @@
     <Image src="~/resources/images/dls logo.png" stretch="aspectFit" class="m-r-30"></Image>
 </ActionBar>
 
-<GridLayout>
+<FlexboxLayout flexDirection="column">
+
+    <FlexboxLayout flexDirection="row" *ngIf="text.cod_usuario!=null" justifyContent="center" class="m-t-20">
+        <Label text="IDENTIFICACIÓN: " class="text-center fw-bold fs-20" ></Label>
+        <Label [text]="text.cod_usuario" class="text-center fs-20" ></Label>
+    </FlexboxLayout>
+
+    <StackLayout *ngIf="text.cod_usuario!=null" class="hr-light m-y-5"></StackLayout>
 
     <ListView *ngIf="paginas.length>0" [items]="paginas" class="list-group">
         <ng-template let-pagina="item">
-            <Button class="btn btn-primary btn-active fs-20 font-weight-bold" id="button" [text]="pagina.title" (tap)="page_was_tapped( pagina )" ></Button>
+            <Button class="btn btn-primary fs-20 font-weight-bold" id="button" [text]="pagina.title" (tap)="page_was_tapped( pagina )" ></Button>
         </ng-template>
-    </ListView>         
+    </ListView>
     
-    <StackLayout *ngIf="show_not_found_text">
+    <ng-container *ngIf="show_not_found_text">
         <Label [text]="text.items_not_found" class="text-center fw-bold fs-20 m-t-20" ></Label>
-    </StackLayout>
+    </ng-container>
 
     <ActivityIndicator row="1" #activityIndicator [busy]="isBusy" color="red" width="100" height="100" class="activity-indicator"></ActivityIndicator>
 
-</GridLayout>
+</FlexboxLayout>

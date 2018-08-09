@@ -3,7 +3,9 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class Routes 
 {
-    private debug:boolean = true;
+    private debug:boolean = false;
+
+    
     private server_url:string = "http://gestion.dls.com.py:8080/api/v1/app_gestion_dls/";
     private debug_url: string = "http://192.168.1.186:8000/api/v1/app_gestion_dls/";
     private routes = 

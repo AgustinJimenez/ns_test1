@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import * as app from "tns-core-modules/application/application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { HttpProvider } from "~/providers/HttpProvider";
-import { Routes } from "~/config/Routes";
+import { HttpProvider } from "~/providers/Http/HttpProvider";
+import { Routes } from "~/config/ServerRoutes/Routes";
 import { RouterExtensions } from "nativescript-angular/router"; 
 import { NavigationExtras } from "@angular/router";
-
+import { getString } from "application-settings";
 @Component({
     selector: "Home",
     moduleId: module.id,
@@ -15,12 +15,12 @@ import { NavigationExtras } from "@angular/router";
 export class HomeComponent implements OnInit 
 {
     public debug:boolean = true;
-    public cod_usuario: string ;
     public show_not_found_text = false;
     public paginas: Array<Object> = [];
     public text = 
     {
-        items_not_found: "No se encontraron datos."
+        items_not_found: "No se encontraron datos.",
+        cod_usuario: null
     };
 
     public originatingIp = "";
@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit
         private routerExtensions: RouterExtensions 
     ) 
     {
+        this.text.cod_usuario = getString("cod_usuario");
         // Use the component constructor to inject providers.
     }
 

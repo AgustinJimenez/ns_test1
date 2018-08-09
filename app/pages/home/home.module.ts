@@ -4,8 +4,8 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { HomeRoutingModule } from "~/pages/home/home-routing.module";
 import { HomeComponent } from "~/pages/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
-import { HttpProvider } from "~/providers/HttpProvider";
-import { Routes } from "~/config/Routes";
+import { HttpProvider } from "~/providers/Http/HttpProvider";
+import { Routes } from "~/config/ServerRoutes/Routes";
 
 @NgModule({
     imports: 

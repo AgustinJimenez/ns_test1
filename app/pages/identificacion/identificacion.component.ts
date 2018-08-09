@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import * as app from "tns-core-modules/application/application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { HttpProvider } from "~/providers/HttpProvider";
-import { Routes } from "~/config/Routes";
+import { HttpProvider } from "~/providers/Http/HttpProvider";
+import { Routes } from "~/config/ServerRoutes/Routes";
+import { getString, setString } from "application-settings";
 @Component({
     selector: "Identificacion",
     moduleId: module.id,
@@ -18,7 +19,7 @@ export class IdentificacionComponent implements OnInit
     };
     public data:{ cod_usuario: string } = 
     {
-        "cod_usuario":""
+        "cod_usuario": null
     };
 
     public options = 
@@ -36,7 +37,9 @@ export class IdentificacionComponent implements OnInit
         public routes: Routes
     ) 
     {
+        //setString("cod_usuario", "HOLA");
         // Use the component constructor to inject providers.
+        this.data.cod_usuario = getString("cod_usuario");
     }
 
     onDrawerButtonTap(): void 
@@ -58,19 +61,29 @@ export class IdentificacionComponent implements OnInit
         if( !this.data.cod_usuario )
             this.show_cod_usuario_empty_message();
         else
-            this.http.request( this.routes.get_route("registro"), {"cod_usuario": this.data.cod_usuario }, {}, "POST" ).then(response => 
+            this.http.request( this.routes.get_route("registro"), this.data , {}, "POST" ).then( (response:any) => 
             {
                 console.log(response);
+                if( response.messages )
+                    alert( response.messages );
+
+                    setString("cod_usuario", this.data.cod_usuario);
+
             })
             .catch(error => 
             {
-                if( error.messages )
+                if( error.error && error.messages )
                     alert( error.messages );
     
                 console.log(error);
             });
         
         
+    }
+
+    private save_local_cod_usuario()
+    {   
+        setString("cod_usuario", this.data.cod_usuario);
     }
 
     private show_cod_usuario_empty_message()

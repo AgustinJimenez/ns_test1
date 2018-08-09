@@ -22,7 +22,7 @@ $colors: 'white', 'black';
 {
   .color-#{$color} 
   {
-    color: #{$color}px;
+    color: #{$color};
   }
 }
 
