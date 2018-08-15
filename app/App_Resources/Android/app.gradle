@@ -8,7 +8,7 @@
 android {  
   defaultConfig {  
     generatedDensities = []
-    applicationId = "org.nativescript.gestiondlsnativescript"  
+    applicationId = "com.delasobera.gestion_dls_app"  
   }  
   aaptOptions {  
     additionalParameters "--no-version-vectors"  
