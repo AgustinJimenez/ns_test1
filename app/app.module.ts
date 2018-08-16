@@ -1,23 +1,29 @@
-import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 
 import { AppRoutingModule } from "~/app-routing.module";
 import { AppComponent } from "~/app.component";
-
+import { ActionBarModule } from "~/components/action-bar/action-bar.module";
 @NgModule({
-    bootstrap: [
+    bootstrap: 
+    [
         AppComponent
     ],
-    imports: [
+    imports: 
+    [
         AppRoutingModule,
         NativeScriptModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        ActionBarModule
+
     ],
-    declarations: [
+    declarations: 
+    [
         AppComponent
     ],
-    schemas: [
+    schemas:
+    [
         NO_ERRORS_SCHEMA
     ]
 })

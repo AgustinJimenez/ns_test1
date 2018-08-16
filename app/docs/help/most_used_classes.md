@@ -6,3 +6,4 @@ m-l-0 = { margin-left:0 }
 m-x-0 = { margin-right:0; margin-left:0 }
 m-x-auto = { horizontal-align: center }
 m-y-0 = { margin-top:0; margin-bottom:0 }
+fontWeight-bold { font-weight: bold }

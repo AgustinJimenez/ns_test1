@@ -7,13 +7,16 @@ import { HttpClientModule } from "@angular/common/http";
 import { HttpProvider } from "~/providers/Http/HttpProvider";
 import { Routes } from "~/config/ServerRoutes/Routes";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { ActionBarModule } from "~/components/action-bar/action-bar.module";
+
 @NgModule({
     imports: 
     [
         NativeScriptCommonModule,
         IdentificacionRoutingModule,
         HttpClientModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        ActionBarModule
     ],
     declarations: 
     [

@@ -5,7 +5,7 @@ import * as connectivity from "tns-core-modules/connectivity/connectivity";
 @Injectable()
 export class HttpProvider
 {
-    private debug: boolean = true;
+    private debug: boolean = false;
     private alert_no_internet_obj = 
     {
         title: "AVISO",

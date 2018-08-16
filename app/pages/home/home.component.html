@@ -1,21 +1,5 @@
-<ActionBar class="action-bar">
-    <!-- 
-    Use the NavigationButton as a side-drawer button in Android
-    because ActionItems are shown on the right side of the ActionBar
-    -->
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()">
-    </NavigationButton>
-    <!-- 
-    Use the ActionItem for IOS with position set to left. Using the
-    NavigationButton as a side-drawer button in iOS is not possible,
-    because its function is to always navigate back in the application.
-    -->
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
-    </ActionItem>
-    <Image src="~/resources/images/dls logo.png" stretch="aspectFit" class="m-r-30"></Image>
-</ActionBar>
-
 <FlexboxLayout flexDirection="column">
+    <AppActionBar></AppActionBar>
 
     <FlexboxLayout flexDirection="row" *ngIf="text.cod_usuario!=null" justifyContent="center" class="m-t-20">
         <Label text="IDENTIFICACIÓN: " class="text-center fw-bold fs-20" ></Label>
@@ -23,6 +7,8 @@
     </FlexboxLayout>
 
     <StackLayout *ngIf="text.cod_usuario!=null" class="hr-light m-y-5"></StackLayout>
+
+    <Example></Example>
 
     <ListView *ngIf="paginas.length>0" [items]="paginas" class="list-group">
         <ng-template let-pagina="item">

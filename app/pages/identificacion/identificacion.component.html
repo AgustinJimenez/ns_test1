@@ -1,22 +1,6 @@
-<ActionBar class="action-bar">
-    <!-- 
-    Use the NavigationButton as a side-drawer button in Android
-    because ActionItems are shown on the right side of the ActionBar
-    -->
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()">
-    </NavigationButton>
-    <!-- 
-    Use the ActionItem for IOS with position set to left. Using the
-    NavigationButton as a side-drawer button in iOS is not possible,
-    because its function is to always navigate back in the application.
-    -->
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
-    </ActionItem>
-    <Image src="~/resources/images/dls logo.png" stretch="aspectFit" class="m-r-30"></Image>
-</ActionBar>
-
-
 <StackLayout orientation="vertical" class="p-r-20 p-l-20 m-t-10">
+
+    <AppActionBar></AppActionBar>
 
     <Label class="h3 font-weight-bold color-black fs-24" text="Identificacion: " textWrap="true"></Label>
 
