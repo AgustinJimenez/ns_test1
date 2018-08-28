@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "827239533779",
+    "firebase_url": "https://gestion-dls-app.firebaseio.com",
+    "project_id": "gestion-dls-app",
+    "storage_bucket": "gestion-dls-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827239533779:android:865cf3f6dd0cc7f6",
+        "android_client_info": {
+          "package_name": "com.delasobera.gestion_dls_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827239533779-5flf0mrjb8kmioc27k2j0ccgovsap2qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe3r1uKpbx8UZ1eEwQdGGx3_IOANAu4yw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

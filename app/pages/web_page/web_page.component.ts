@@ -6,6 +6,7 @@ import * as app from "tns-core-modules/application/application";
 //import { switchMap } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
 
+
 @Component({
     selector: "WebPage",
     moduleId: module.id,

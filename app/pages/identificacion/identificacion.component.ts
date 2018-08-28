@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import * as app from "tns-core-modules/application/application";
-import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { HttpProvider } from "~/providers/Http/HttpProvider";
 import { Routes } from "~/config/ServerRoutes/Routes";
 import { getString, setString } from "application-settings";
+import { TextField } from "ui/text-field";
+import { Page } from "ui/page";
 @Component({
     selector: "Identificacion",
     moduleId: module.id,
     templateUrl: "./identificacion.component.html"
 })
 
-export class IdentificacionComponent implements OnInit 
+export class IdentificacionComponent
 {
     public debug:boolean = true;
     public text = 
@@ -21,42 +21,42 @@ export class IdentificacionComponent implements OnInit
     {
         "cod_usuario": null
     };
-
-    public options = 
-    {
-        title: "Race selection",
-        message: "Are you sure you want to be a Unicorn?",
-        okButtonText: "Yes",
-        cancelButtonText: "No",
-        neutralButtonText: "Cancel"
-    };
+    public cod_usuario_tf = new TextField();
+    public tmp_cod_usuario = null;
+    public is_edit:boolean = false;
+    private cod_usuario_text_field;
 
     constructor
     ( 
         public http: HttpProvider, 
-        public routes: Routes
+        public routes: Routes,
+        public page: Page
     ) 
     {
         //setString("cod_usuario", "HOLA");
         // Use the component constructor to inject providers.
-        this.data.cod_usuario = getString("cod_usuario");
+        this.data.cod_usuario = this.tmp_cod_usuario = getString("cod_usuario");
+        this.is_edit = (this.data.cod_usuario!=null);
+        
     }
 
-    onDrawerButtonTap(): void 
+    ngOnInit()
     {
-        const sideDrawer = <RadSideDrawer>app.getRootView();
-        sideDrawer.showDrawer();
+        this.cod_usuario_tf = this.page.getViewById('cod_usuario_input');
     }
 
-    ngOnInit(): void 
+    public onTextChange(args) 
     {
-        // Init your component properties here.
-        //this.request_pages();
+        if(this.cod_usuario_text_field==undefined)
+            this.cod_usuario_text_field = (<TextField>args.object);
+
+        if( this.cod_usuario_text_field.text != undefined)
+            this.data.cod_usuario = this.cod_usuario_text_field.text.toUpperCase();
     }
 
-    submit_button_was_tapped()
+    public submit_button_was_tapped()
     {
-        console.log( "COD_USUARIO="+this.data.cod_usuario );
+        this.cod_usuario_tf.text = this.data.cod_usuario;
 
         if( !this.data.cod_usuario )
             this.show_cod_usuario_empty_message();
@@ -65,15 +65,16 @@ export class IdentificacionComponent implements OnInit
             {
                 console.log(response);
                 if( response.messages )
-                    alert( response.messages );
+                    alert( { title: "AVISO", message: response.messages, okButtonText: "OK" } );
 
-                    setString("cod_usuario", this.data.cod_usuario);
+                setString("cod_usuario", this.data.cod_usuario);
+                this.tmp_cod_usuario = this.data.cod_usuario;
 
             })
             .catch(error => 
             {
-                if( error.error && error.messages )
-                    alert( error.messages );
+                if( error.error && error.messages != undefined && error.messages != ''  )
+                    alert( { title: "AVISO", message: error.messages, okButtonText: "OK" } );
     
                 console.log(error);
             });

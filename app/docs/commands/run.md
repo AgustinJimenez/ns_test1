@@ -1,6 +1,5 @@
 
-tns run ios --bundle --env.uglify --env.aot 
+tns build ios && tns run ios --bundle --env.uglify --env.aot 
 
 
-tns run android --bundle --env.uglify --env.aot --env.snapshot
-
+tns build android && tns run android --bundle --env.uglify --env.aot --env.snapshot

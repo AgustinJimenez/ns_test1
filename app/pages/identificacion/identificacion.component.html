@@ -1,11 +1,25 @@
-<StackLayout orientation="vertical" class="p-r-20 p-l-20 m-t-10">
+<StackLayout orientation="vertical" class="p-r-20 p-l-20 m-t-10" >
 
     <AppActionBar></AppActionBar>
 
     <Label class="h3 font-weight-bold color-black fs-24" text="Identificacion: " textWrap="true"></Label>
 
-    <TextField hint="Introduzca Identificador" autocorrect="false" class="input input-border" [ngModel]='data.cod_usuario' (ngModelChange)='data.cod_usuario= $event.toUpperCase() '></TextField> 
-
-    <Button [text]="(data.cod_usuario!=null)?'ACTUALIZAR':'GUARDAR'" class="btn btn-primary fs-20 font-weight-bold" (tap)="submit_button_was_tapped()"></Button>
+    <TextField 
+    [text]="tmp_cod_usuario"
+    id="cod_usuario_input"
+    returnKeyType="done"
+    (textChange)="onTextChange($event)"
+    hint="Introduzca Identificador" 
+    class="input input-border"
+    autocorrect="false"
+    >
+    
+    </TextField>
+    
+    <Button
+    [text]="(is_edit)?'ACTUALIZAR':'GUARDAR'" 
+    class="btn btn-primary btn-fix-tansparecy fs-20 font-weight-bold" 
+    (tap)="submit_button_was_tapped()">
+    </Button>
 
 </StackLayout>

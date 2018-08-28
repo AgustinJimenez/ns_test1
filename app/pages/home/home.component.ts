@@ -4,7 +4,6 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { HttpProvider } from "~/providers/Http/HttpProvider";
 import { Routes } from "~/config/ServerRoutes/Routes";
 import { RouterExtensions } from "nativescript-angular/router"; 
-import { NavigationExtras } from "@angular/router";
 import { getString } from "application-settings";
 @Component({
     selector: "Home",
@@ -16,7 +15,7 @@ export class HomeComponent implements OnInit
 {
     public debug:boolean = true;
     public show_not_found_text = false;
-    public paginas: Array<Object> = [];
+    public paginas: { title: string, url: string }[] = [];
     public text = 
     {
         items_not_found: "No se encontraron datos.",
@@ -42,6 +41,7 @@ export class HomeComponent implements OnInit
 
     ngOnInit(): void 
     {
+        console.log( "COD-USUARIO-ONINIT="+this.text.cod_usuario  );
         // Init your component properties here.
         this.request_pages();
     }
@@ -55,26 +55,32 @@ export class HomeComponent implements OnInit
     request_pages()
     {
         this.isBusy = true;   
-        this.http.request( this.routes.get_route("home") ).then( (response:any) => 
+        this.http.request( this.routes.get_route("home") )
+        .then( (response:any) => 
         {
             this.paginas = response.paginas;
             this.isBusy = false;
-            console.log("here is busy", this.isBusy );
+            this.show_not_found_text = false;
         })
         .catch((error) => 
         {
-            this.isBusy = false;
-            this.show_not_found_text = true;
+            this.request_not_found();
         });
 
+    }
 
+    request_not_found()
+    {
+        this.isBusy = false;   
+        this.show_not_found_text = true;
     }
 
     page_was_tapped(pagina)
     {
-        let navigationExtras: NavigationExtras = { queryParams: pagina };
-        
-        this.routerExtensions.navigate(["/web_page"], navigationExtras);
+        this.routerExtensions.navigate(["/web_page"],
+        {
+            queryParams: pagina   
+        });
         //this.router.navigate(["web_page"], navigationExtras);
     }
 

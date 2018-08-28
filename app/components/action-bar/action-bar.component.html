@@ -1,28 +1,22 @@
-<ActionBar class="action-bar">
-    <ng-template
-        *ngIf="title==null; then showImageBar; else showTitleBar">
+<ActionBar class="action-bar" height="80dp">
+    
+    <ng-template *ngIf="title==null; then showImageBar; else showTitleBar">
     </ng-template>
-    <!-- 
-    Use the NavigationButton as a side-drawer button in Android
-    because ActionItems are shown on the right side of the ActionBar
-    -->
-    <NavigationButton ios:visibility="collapsed" (tap)="onDrawerButtonTap()" >
-        <Label text="here" text="&#xf0c9;" class="fa" fontSize="28"></Label>
+    
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()" height="80dp">
     </NavigationButton>
-    <!-- 
-    Use the ActionItem for IOS with position set to left. Using the
-    NavigationButton as a side-drawer button in iOS is not possible,
-    because its function is to always navigate back in the application.
-    -->
+
     <ActionItem android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
-        <Label text="here" text="&#xf0c9;" class="fa" fontSize="28"></Label>
+        <Label text="&#xf0c9;" class="fa" fontSize="28"></Label>
     </ActionItem>
 
     <ng-template #showImageBar>
-        <Image src="~/resources/images/dls logo.png" stretch="aspectFit" class="m-r-30"></Image>
+        <ActionItem position="center" height="80dp">
+            <Image (tap)="onNavItemTap('/home')" src="~/resources/images/dls logo.png" stretch="aspectFit" class="m-r-60" loadMode="async"></Image>
+        </ActionItem>
     </ng-template>
     
-
+    
     <ng-template #showTitleBar>
         <Label [text]=" title.toUpperCase() " fontWeight="bold" fontSize="28"></Label>
     </ng-template>

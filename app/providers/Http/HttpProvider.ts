@@ -1,10 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import * as connectivity from "tns-core-modules/connectivity/connectivity";
-
+import { getString } from "application-settings";
+import { device } from "platform";
 @Injectable()
 export class HttpProvider
 {
+    private headers;
+
+    constructor(private http: HttpClient ) 
+    {
+    }
+    
     private debug: boolean = false;
     private alert_no_internet_obj = 
     {
@@ -17,26 +24,37 @@ export class HttpProvider
     {
         "api-token": "yduibDHAjzwdOVPfvPfmLkprqW1Z3li3",
         "Content-Type": "application/json",
-        "firebase-cloud-message-token": "abc"
+        "firebase-cloud-message-token": getString("fcm_token"),
+        "timeout": '5000'
     };
-
-    constructor(private http: HttpClient) 
-    { 
-
+    
+    private get_device_info()
+    {
+        return {
+            "deviceType": device.deviceType,
+            "language": device.language,
+            "manufacturer": device.manufacturer,
+            "model": device.model,
+            "os": device.os,
+            "osVersion": device.osVersion,
+            "region": device.region,
+            "sdkVersion": device.sdkVersion,
+            "uuid": device.uuid
+        };
     }
 
     public request(url: string, params: any = {}, header: any = {}, method: string = "GET")
     {
 
-        let headers = this.create_headers(header);
+        this.headers = this.create_headers(header);
 
-        if(this.debug)
-        {
-            console.log("<===================START-HTTP-REQUEST======================>");  
-            console.log("URL===>",url);console.log("PARAMS===>",params);console.log("HEADER===>",header);console.log("METHOD===>",method);
-            console.log("<===================END-HTTP-REQUEST======================>"); 
-        }
+        let fcm_token = getString("fcm_token");
+        
+        if(fcm_token != undefined && fcm_token!= '')
+            this.headers.set('firebase-cloud-message-token', fcm_token);
 
+        this.headers.set('device_info', JSON.stringify( this.get_device_info() ));
+        
         return new Promise((resolve, reject) =>
         {
             setTimeout(() =>
@@ -47,7 +65,14 @@ export class HttpProvider
                     reject( {} );
                 }
 
-                this.http.request(method, url, { body: params, headers: headers }).subscribe( data => 
+                if(this.debug)
+                {
+                    console.log("<===================START-HTTP-REQUEST======================>");  
+                    console.log("URL===>",url,"\nPARAMS===>",params,"\nHEADER===>",this.headers,"\nMETHOD===>",method);
+                    console.log("<===================END-HTTP-REQUEST======================>"); 
+                }
+
+                this.http.request(method, url, { body: params, headers: this.headers }).subscribe( data => 
                 {
                     let response: any = (data!=undefined)?data:{};
 
