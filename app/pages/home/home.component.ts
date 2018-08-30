@@ -55,10 +55,12 @@ export class HomeComponent implements OnInit
     request_pages()
     {
         this.isBusy = true;   
+        
         this.http.request( this.routes.get_route("home") )
         .then( (response:any) => 
         {
-            this.paginas = response.paginas;
+            console.log("HOME REQUEST END============>");
+            this.paginas = (response.paginas!=undefined)?response.paginas:[];
             this.isBusy = false;
             this.show_not_found_text = false;
         })

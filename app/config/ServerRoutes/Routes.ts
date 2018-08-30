@@ -5,7 +5,7 @@ export class Routes
 {
     private debug: boolean = false;
     private server_url: string = "http://gestion.dls.com.py:8080/api/v1/app_gestion_dls/";
-    private debug_url: string = "http://192.168.1.188:8080/api/v1/app_gestion_dls/";
+    private debug_url: string = "http://192.168.1.188:8000/api/v1/app_gestion_dls/";
     private routes = 
     {
         "home": "",
