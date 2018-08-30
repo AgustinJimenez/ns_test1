@@ -5,7 +5,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 @Component({
   selector: 'AppActionBar',
   templateUrl: './action-bar.component.html',
-  styleUrls: ['./action-bar.component.css'],
+  //styleUrls: ['./action-bar.component.css'],
   moduleId: module.id,
 })
 

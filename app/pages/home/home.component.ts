@@ -9,7 +9,7 @@ import { getString } from "application-settings";
     selector: "Home",
     moduleId: module.id,
     templateUrl: "./home.component.html",
-    styleUrls: ["./home.component.css"],
+    //styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit 
 {
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit
         .then( (response:any) => 
         {
             console.log("HOME REQUEST END============>");
-            this.paginas = (response.paginas!=undefined)?response.paginas:[];
+            this.paginas = response.paginas;
             this.isBusy = false;
             this.show_not_found_text = false;
         })

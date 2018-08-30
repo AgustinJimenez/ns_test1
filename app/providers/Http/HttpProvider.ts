@@ -6,8 +6,7 @@ import { device } from "platform";
 @Injectable()
 export class HttpProvider
 {
-    constructor(private http: HttpClient ){ }
-    
+    constructor(private http: HttpClient){}
     private debug: boolean = true;
     private alert_no_internet_obj = 
     {
@@ -20,9 +19,9 @@ export class HttpProvider
     {
         "api-token": "yduibDHAjzwdOVPfvPfmLkprqW1Z3li3",
         "Content-Type": "application/json",
-        "firebase-cloud-message-token": getString("fcm_token")
+        "firebase-cloud-message-token": "abc"
     };
-    
+
     private get_device_info()
     {
         return {
@@ -38,7 +37,7 @@ export class HttpProvider
         };
     }
 
-    public request( url: string, params: any = {}, header: any = {}, method: string = "GET" )
+    public request(url: string, params: any = {}, header: any = {}, method: string = "GET")
     {
 
         header = this.create_headers(header);
@@ -48,8 +47,15 @@ export class HttpProvider
         if(fcm_token != undefined && fcm_token!= '')
             header['firebase-cloud-message-token'] = fcm_token;
 
-            header['device_info'], JSON.stringify( this.get_device_info() );
-        
+        header['device_info'] =  JSON.stringify( this.get_device_info() );
+
+        if(this.debug)
+        {
+            console.log("<===================START-HTTP-REQUEST======================>");  
+            console.log("URL===>",url);console.log("PARAMS===>",params);console.log("HEADER===>",header);console.log("METHOD===>",method);
+            console.log("<===================END-HTTP-REQUEST======================>"); 
+        }
+
         return new Promise((resolve, reject) =>
         {
             setTimeout(() =>
@@ -60,20 +66,16 @@ export class HttpProvider
                     reject( {} );
                 }
 
-                if(this.debug)
-                    console.log("<===================START-HTTP-REQUEST======================>\nURL===>"
-                    ,url,
-                    "\nPARAMS===>",params,
-                    "\nHEADER===>",header,
-                    "\nMETHOD===>",method,
-                    "\n<===================END-HTTP-REQUEST======================>"); 
-                //new HttpHeaders( header )
-
-                this.http.request(method, url, { body: params, headers: header   }).subscribe( (response:any) => 
+                this.http.request(method, url, { body: params, headers: header }).subscribe( data => 
                 {
-                    console.log("HERE MOTHER FUCKER=====>", response);
+                    let response: any = (data!=undefined)?data:{};
+
                     if(this.debug)
-                        console.log("<===================START-HTTP-RESPONSE======================>\nRESPONSE===>",response,"\n<===================END-HTTP-RESPONSE======================>"); 
+                    {
+                        console.log("<===================START-HTTP-RESPONSE======================>");  
+                        console.log("RESPONSE===>",response);
+                        console.log("<===================END-HTTP-RESPONSE======================>"); 
+                    }
                     
                     if(response.data == undefined)
                       response.data = {};
@@ -108,7 +110,7 @@ export class HttpProvider
         for (let key in extra_headers) 
             headers[key] =  extra_headers[key];
 
-        return headers;
+        return  headers;
 
     }
 }
